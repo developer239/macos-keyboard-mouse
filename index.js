@@ -9,7 +9,7 @@ const twoPI = Math.PI * 2.0;
 const height = 500
 const width = 500
 
-for (let x = 0; x < width; x++)
+for (let x = 0; x < width * 2; x++)
 {
   const y = height * Math.sin((twoPI * x) / width) + height;
   mouse.move(x, y);

@@ -9,27 +9,25 @@ CGPoint Mouse::getLocation() {
   return CGPointMake(cursor.x, cursor.y);
 }
 
-void Mouse::click(int button, bool shouldPress) {
+void Mouse::press(CGMouseButton button, bool isButtonDown) {
   CGPoint location = getLocation();
   CGEventType typePress;
   CGEventType typeRelease;
 
   switch (button) {
     case kCGMouseButtonLeft:
-      typePress = shouldPress ? kCGEventLeftMouseDown : kCGEventLeftMouseUp;
-      typeRelease = shouldPress ? kCGEventLeftMouseUp : kCGEventLeftMouseDown;
+      typePress = isButtonDown ? kCGEventLeftMouseDown : kCGEventLeftMouseUp;
+      typeRelease = isButtonDown ? kCGEventLeftMouseUp : kCGEventLeftMouseDown;
       break;
 
     case kCGMouseButtonRight:
-      typePress = shouldPress ? kCGEventRightMouseDown : kCGEventRightMouseUp;
-      typeRelease = shouldPress ? kCGEventRightMouseUp : kCGEventRightMouseDown;
+      typePress = isButtonDown ? kCGEventRightMouseDown : kCGEventRightMouseUp;
+      typeRelease = isButtonDown ? kCGEventRightMouseUp : kCGEventRightMouseDown;
       break;
   };
 
-  CGMouseButton type = CGMouseButton(button);
-
-  executeEvent(type, typePress, location);
-  executeEvent(type, typeRelease, location);
+  executeEvent(button, typePress, location);
+  executeEvent(button, typeRelease, location);
 }
 
 void Mouse::move(int x, int y) {
@@ -38,7 +36,7 @@ void Mouse::move(int x, int y) {
 }
 
 void Mouse::executeEvent(CGMouseButton button, CGEventType type, CGPoint location) {
-  CGEventRef event = CGEventCreateMouseEvent(NULL, type, location, button);
+  CGEventRef event = CGEventCreateMouseEvent(nullptr, type, location, button);
   CGEventPost(kCGHIDEventTap, event);
   CFRelease(event);
 

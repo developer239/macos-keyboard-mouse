@@ -8,7 +8,7 @@ class MouseWrapped : public Napi::ObjectWrap<MouseWrapped> {
 public:
   static Napi::Object Init(Napi::Env env, Napi::Object exports);
 
-  MouseWrapped(const Napi::CallbackInfo &info);
+  explicit MouseWrapped(const Napi::CallbackInfo &info);
 
 private:
   static Napi::FunctionReference constructor;
@@ -19,7 +19,7 @@ private:
 
   void move(const Napi::CallbackInfo &info);
 
-  void click(const Napi::CallbackInfo &info);
+  void press(const Napi::CallbackInfo &info);
 
   void setDelay(const Napi::CallbackInfo &info);
 };

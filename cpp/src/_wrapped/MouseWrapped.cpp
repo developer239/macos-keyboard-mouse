@@ -8,7 +8,7 @@ Napi::Object MouseWrapped::Init(Napi::Env env, Napi::Object exports) {
   Napi::Function func = DefineClass(env, "Mouse", {
       InstanceMethod("getLocation", &MouseWrapped::getLocation),
       InstanceMethod("move", &MouseWrapped::move),
-      InstanceMethod("click", &MouseWrapped::click),
+      InstanceMethod("press", &MouseWrapped::press),
       InstanceMethod("setDelay", &MouseWrapped::setDelay),
   });
 
@@ -26,7 +26,7 @@ MouseWrapped::MouseWrapped(const Napi::CallbackInfo &info) : Napi::ObjectWrap<Mo
   this->_actualClass_ = new Mouse();
 }
 
-void MouseWrapped::click(const Napi::CallbackInfo &info) {
+void MouseWrapped::press(const Napi::CallbackInfo &info) {
   Napi::Env env = info.Env();
   Napi::HandleScope scope(env);
 
@@ -35,17 +35,20 @@ void MouseWrapped::click(const Napi::CallbackInfo &info) {
   }
 
   if (!info[0].IsNumber()) {
-    Napi::TypeError::New(env, "button type is not a number.").ThrowAsJavaScriptException();
+    Napi::TypeError::New(env, "Button type is not a number.").ThrowAsJavaScriptException();
   }
 
   if (!info[1].IsBoolean()) {
-    Napi::TypeError::New(env, "press type is not a boolean.").ThrowAsJavaScriptException();
+    Napi::TypeError::New(env, "isDown is not a boolean.").ThrowAsJavaScriptException();
   }
 
-  Napi::Number button = info[0].As<Napi::Number>();
+  // TODO: is the type conversion correct?
+  int buttonType = info[0].As<Napi::Number>();
   Napi::Boolean shouldPress = info[1].As<Napi::Boolean>();
 
-  this->_actualClass_->click(button, shouldPress);
+  CGMouseButton button = CGMouseButton(buttonType);
+
+  this->_actualClass_->press(button, shouldPress);
 }
 
 void MouseWrapped::move(const Napi::CallbackInfo &info) {

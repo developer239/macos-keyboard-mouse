@@ -7,7 +7,7 @@ class Mouse {
 public:
   void move(int x, int y);
 
-  void click(int button, bool shouldPress);
+  void press(CGMouseButton button, bool isButtonDown);
 
   void setDelay(int ms);
 
