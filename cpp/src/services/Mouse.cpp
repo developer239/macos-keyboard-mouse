@@ -30,9 +30,21 @@ void Mouse::press(CGMouseButton button, bool isButtonDown) {
   executeEvent(button, typeRelease, location);
 }
 
+void Mouse::pressLeft() {
+  Mouse::press(kCGMouseButtonLeft, true);
+}
+
+void Mouse::pressRight() {
+  Mouse::press(kCGMouseButtonRight, true);
+}
+
 void Mouse::move(int x, int y) {
   CGPoint location = CGPointMake(x, y);
   executeEvent(kCGMouseButtonLeft, kCGEventMouseMoved, location);
+}
+
+void Mouse::setDelay(int ms) {
+  delayMs = ms;
 }
 
 void Mouse::executeEvent(CGMouseButton button, CGEventType type, CGPoint location) {
@@ -41,8 +53,4 @@ void Mouse::executeEvent(CGMouseButton button, CGEventType type, CGPoint locatio
   CFRelease(event);
 
   delay(delayMs);
-}
-
-void Mouse::setDelay(int ms) {
-  delayMs = ms;
 }

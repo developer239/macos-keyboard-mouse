@@ -9,6 +9,10 @@ public:
 
   void press(CGMouseButton button, bool isButtonDown);
 
+  void pressLeft();
+
+  void pressRight();
+
   void setDelay(int ms);
 
   CGPoint getLocation();

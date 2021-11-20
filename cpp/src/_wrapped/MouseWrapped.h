@@ -21,6 +21,10 @@ private:
 
   void press(const Napi::CallbackInfo &info);
 
+  void pressLeft(const Napi::CallbackInfo &info);
+
+  void pressRight(const Napi::CallbackInfo &info);
+
   void setDelay(const Napi::CallbackInfo &info);
 };
 

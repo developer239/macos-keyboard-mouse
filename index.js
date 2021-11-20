@@ -14,3 +14,5 @@ for (let x = 0; x < width * 2; x++)
   const y = height * Math.sin((twoPI * x) / width) + height;
   mouse.move(x, y);
 }
+
+mouse.pressLeft()

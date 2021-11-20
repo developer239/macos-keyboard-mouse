@@ -10,6 +10,8 @@ Napi::Object MouseWrapped::Init(Napi::Env env, Napi::Object exports) {
       InstanceMethod("move", &MouseWrapped::move),
       InstanceMethod("press", &MouseWrapped::press),
       InstanceMethod("setDelay", &MouseWrapped::setDelay),
+      InstanceMethod("pressLeft", &MouseWrapped::pressLeft),
+      InstanceMethod("pressRight", &MouseWrapped::pressRight),
   });
 
   constructor = Napi::Persistent(func);
@@ -24,31 +26,6 @@ MouseWrapped::MouseWrapped(const Napi::CallbackInfo &info) : Napi::ObjectWrap<Mo
   Napi::HandleScope scope(env);
 
   this->_actualClass_ = new Mouse();
-}
-
-void MouseWrapped::press(const Napi::CallbackInfo &info) {
-  Napi::Env env = info.Env();
-  Napi::HandleScope scope(env);
-
-  if (info.Length() != 2) {
-    Napi::TypeError::New(env, "Expected 2 arguments.").ThrowAsJavaScriptException();
-  }
-
-  if (!info[0].IsNumber()) {
-    Napi::TypeError::New(env, "Button type is not a number.").ThrowAsJavaScriptException();
-  }
-
-  if (!info[1].IsBoolean()) {
-    Napi::TypeError::New(env, "isDown is not a boolean.").ThrowAsJavaScriptException();
-  }
-
-  // TODO: is the type conversion correct?
-  int buttonType = info[0].As<Napi::Number>();
-  Napi::Boolean shouldPress = info[1].As<Napi::Boolean>();
-
-  CGMouseButton button = CGMouseButton(buttonType);
-
-  this->_actualClass_->press(button, shouldPress);
 }
 
 void MouseWrapped::move(const Napi::CallbackInfo &info) {
@@ -101,4 +78,43 @@ void MouseWrapped::setDelay(const Napi::CallbackInfo &info) {
   Napi::Number ms = info[0].As<Napi::Number>();
 
   this->_actualClass_->setDelay(ms);
+}
+
+void MouseWrapped::press(const Napi::CallbackInfo &info) {
+  Napi::Env env = info.Env();
+  Napi::HandleScope scope(env);
+
+  if (info.Length() != 2) {
+    Napi::TypeError::New(env, "Expected 2 arguments.").ThrowAsJavaScriptException();
+  }
+
+  if (!info[0].IsNumber()) {
+    Napi::TypeError::New(env, "Button type is not a number.").ThrowAsJavaScriptException();
+  }
+
+  if (!info[1].IsBoolean()) {
+    Napi::TypeError::New(env, "isDown is not a boolean.").ThrowAsJavaScriptException();
+  }
+
+  // TODO: is the type conversion correct?
+  int buttonType = info[0].As<Napi::Number>();
+  Napi::Boolean shouldPress = info[1].As<Napi::Boolean>();
+
+  CGMouseButton button = CGMouseButton(buttonType);
+
+  this->_actualClass_->press(button, shouldPress);
+}
+
+void MouseWrapped::pressLeft(const Napi::CallbackInfo &info) {
+  Napi::Env env = info.Env();
+  Napi::HandleScope scope(env);
+
+  this->_actualClass_->pressLeft();
+}
+
+void MouseWrapped::pressRight(const Napi::CallbackInfo &info) {
+  Napi::Env env = info.Env();
+  Napi::HandleScope scope(env);
+
+  this->_actualClass_->pressRight();
 }
