@@ -1,5 +1,7 @@
 # MacOS Keyboard Mouse
 
+[![npm version](http://img.shields.io/npm/v/create-opinionated-app.svg?style=flat)](https://www.npmjs.com/package/macos-keyboard-mouse "View this project on npm")
+
 Keyboard and mouse controls for your Node project. Currently, supports only Mac.
 
 ## Libraries:
