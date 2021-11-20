@@ -9,9 +9,13 @@ public:
 
   void click(int button, bool shouldPress);
 
+  void setDelay(int ms);
+
   CGPoint getLocation();
 
 private:
+  int delayMs = 16;
+
   void executeEvent(CGMouseButton button, CGEventType type, CGPoint location);
 };
 

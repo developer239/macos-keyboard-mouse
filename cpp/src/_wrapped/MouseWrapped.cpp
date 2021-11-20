@@ -9,6 +9,7 @@ Napi::Object MouseWrapped::Init(Napi::Env env, Napi::Object exports) {
       InstanceMethod("getLocation", &MouseWrapped::getLocation),
       InstanceMethod("move", &MouseWrapped::move),
       InstanceMethod("click", &MouseWrapped::click),
+      InstanceMethod("setDelay", &MouseWrapped::setDelay),
   });
 
   constructor = Napi::Persistent(func);
@@ -80,4 +81,21 @@ Napi::Value MouseWrapped::getLocation(const Napi::CallbackInfo &info) {
   result.Set("y", point.y);
 
   return result;
+}
+
+void MouseWrapped::setDelay(const Napi::CallbackInfo &info) {
+  Napi::Env env = info.Env();
+  Napi::HandleScope scope(env);
+
+  if (info.Length() != 1) {
+    Napi::TypeError::New(env, "Argument expected.").ThrowAsJavaScriptException();
+  }
+
+  if (!info[0].IsNumber()) {
+    Napi::TypeError::New(env, "Argument is not a number.").ThrowAsJavaScriptException();
+  }
+
+  Napi::Number ms = info[0].As<Napi::Number>();
+
+  this->_actualClass_->setDelay(ms);
 }

@@ -42,5 +42,9 @@ void Mouse::executeEvent(CGMouseButton button, CGEventType type, CGPoint locatio
   CGEventPost(kCGHIDEventTap, event);
   CFRelease(event);
 
-  delay(25);
+  delay(delayMs);
+}
+
+void Mouse::setDelay(int ms) {
+  delayMs = ms;
 }

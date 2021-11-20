@@ -20,6 +20,8 @@ private:
   void move(const Napi::CallbackInfo &info);
 
   void click(const Napi::CallbackInfo &info);
+
+  void setDelay(const Napi::CallbackInfo &info);
 };
 
 #endif
