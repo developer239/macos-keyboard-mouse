@@ -1,16 +1,30 @@
 {
-  "name": "macoskeyboardmouse",
+  "name": "macos-keyboard-mouse",
   "version": "0.0.0",
-  "description": "Build Node-API native addon with CMake and node-addon-api C++ wrapper.",
-  "main": "hello.js",
+  "description": "Native Keyboard and Mouse controls for your Node application.",
+  "repository": "https://github.com/developer239/macos-keyboard-mouse",
+  "main": "index.js",
+  "typings": "index.d.ts",
   "private": true,
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "bindings": "~1.2.1",
     "node-addon-api": "^1.0.0"
   },
   "scripts": {
     "install": "cmake-js compile -d cpp print-configure",
-    "build": "cmake-js compile -d cpp print-configure",
-    "test": "node hello.js"
-  }
+    "build": "cmake-js compile -d cpp print-configure"
+  },
+  "keywords": [
+    "node",
+    "mouse",
+    "keyboard",
+    "c++",
+    "cpp",
+    "node-addon-api",
+    "cmake",
+    "cmake-js"
+  ]
 }
