@@ -49,10 +49,9 @@ void KeyboardWrapped::click(const Napi::CallbackInfo &info) {
   Napi::String keyCode = info[0].As<Napi::String>();
   std::string keyCodeString = keyCode.Utf8Value();
 
-  const char *keyCodeStringCharPointer = keyCodeString.c_str();
-  char keyCodeStringChar = *keyCodeStringCharPointer;
+  const char *keyCodeStringChar = keyCodeString.c_str();
 
-  this->_actualClass_->click(keyCodeStringChar);
+  this->_actualClass_->click(keyCodeStringChar[0]);
 }
 
 void KeyboardWrapped::clickEnter(const Napi::CallbackInfo &info) {
