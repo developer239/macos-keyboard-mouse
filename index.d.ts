@@ -9,13 +9,13 @@ export enum Button {
   center,
 }
 
-export interface IKeyboard {
+export class Keyboard {
   type(query: string): void
   click(key: string): void
   clickEnter(): void
 }
 
-export interface IMouse {
+export class Mouse {
   move(x: number, y: number): void
   press(button: Button, isDown: boolean): void
   pressLeft(): void
