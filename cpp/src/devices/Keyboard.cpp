@@ -5,7 +5,7 @@
 
 void Keyboard::type(std::string query) {
   for (std::string::size_type i = 0; i < query.size(); i += 1) {
-    click(query[i]);
+    click(std::tolower(query[i]));
   }
 }
 
@@ -43,6 +43,7 @@ void Keyboard::release(int key) {
   delay(50);
 }
 
+// TOD: implement upper case and special characters
 // TODO: refactor
 int Keyboard::mapASCIIToVirtualKey(char key) {
   switch (key) {

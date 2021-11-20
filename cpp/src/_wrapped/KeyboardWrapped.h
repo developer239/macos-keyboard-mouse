@@ -14,6 +14,12 @@ private:
   static Napi::FunctionReference constructor;
 
   Keyboard *_actualClass_;
+
+  void type(const Napi::CallbackInfo &info);
+
+  void click(const Napi::CallbackInfo &info);
+
+  void clickEnter(const Napi::CallbackInfo &info);
 };
 
 #endif
