@@ -1,23 +1,23 @@
-#include "classexample.h"
+#include "MouseWrapped.h"
 
-Napi::FunctionReference ClassExample::constructor;
+Napi::FunctionReference MouseWrapped::constructor;
 
-Napi::Object ClassExample::Init(Napi::Env env, Napi::Object exports) {
+Napi::Object MouseWrapped::Init(Napi::Env env, Napi::Object exports) {
   Napi::HandleScope scope(env);
 
-  Napi::Function func = DefineClass(env, "ClassExample", {
-    InstanceMethod("add", &ClassExample::Add),
-    InstanceMethod("getValue", &ClassExample::GetValue),
+  Napi::Function func = DefineClass(env, "Mouse", {
+    InstanceMethod("add", &MouseWrapped::Add),
+    InstanceMethod("getValue", &MouseWrapped::GetValue),
   });
 
   constructor = Napi::Persistent(func);
   constructor.SuppressDestruct();
 
-  exports.Set("ClassExample", func);
+  exports.Set("Mouse", func);
   return exports;
 }
 
-ClassExample::ClassExample(const Napi::CallbackInfo& info) : Napi::ObjectWrap<ClassExample>(info)  {
+MouseWrapped::MouseWrapped(const Napi::CallbackInfo& info) : Napi::ObjectWrap<MouseWrapped>(info)  {
   Napi::Env env = info.Env();
   Napi::HandleScope scope(env);
 
@@ -29,17 +29,17 @@ ClassExample::ClassExample(const Napi::CallbackInfo& info) : Napi::ObjectWrap<Cl
 
   if(!info[0].IsNumber()){
     Napi::Object object_parent = info[0].As<Napi::Object>();
-    ClassExample* example_parent = Napi::ObjectWrap<ClassExample>::Unwrap(object_parent);
-    ActualClass* parent_actual_class_instance = example_parent->GetInternalInstance();
-    this->actualClass_ = new ActualClass(parent_actual_class_instance->getValue());
+    MouseWrapped* example_parent = Napi::ObjectWrap<MouseWrapped>::Unwrap(object_parent);
+    Mouse* parent_actual_class_instance = example_parent->GetInternalInstance();
+    this->actualClass_ = new Mouse(parent_actual_class_instance->getValue());
     return;
   }
 
   Napi::Number value = info[0].As<Napi::Number>();
-  this->actualClass_ = new ActualClass(value.DoubleValue());
+  this->actualClass_ = new Mouse(value.DoubleValue());
 }
 
-Napi::Value ClassExample::GetValue(const Napi::CallbackInfo& info) {
+Napi::Value MouseWrapped::GetValue(const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
   Napi::HandleScope scope(env);
 
@@ -48,7 +48,7 @@ Napi::Value ClassExample::GetValue(const Napi::CallbackInfo& info) {
 }
 
 
-Napi::Value ClassExample::Add(const Napi::CallbackInfo& info) {
+Napi::Value MouseWrapped::Add(const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
   Napi::HandleScope scope(env);
 
@@ -62,6 +62,6 @@ Napi::Value ClassExample::Add(const Napi::CallbackInfo& info) {
   return Napi::Number::New(info.Env(), answer);
 }
 
-ActualClass* ClassExample::GetInternalInstance() {
+Mouse* MouseWrapped::GetInternalInstance() {
   return this->actualClass_;
 }

@@ -7,10 +7,10 @@ project(macos-keyboard-mouse)
 include_directories(${CMAKE_JS_INC})
 file(GLOB SOURCE_FILES "src/main.cpp")
 add_library(${PROJECT_NAME} SHARED ${SOURCE_FILES} ${CMAKE_JS_SRC}
-        src/services/actualclass.cpp
-        src/services/actualclass.h
-        src/services/classexample.cpp
-        src/services/classexample.h
+        src/services/Mouse.cpp
+        src/services/Mouse.h
+        src/services/MouseWrapped.cpp
+        src/services/MouseWrapped.h
         )
 
 set_target_properties(${PROJECT_NAME} PROPERTIES PREFIX "" SUFFIX ".node")

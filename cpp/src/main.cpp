@@ -1,8 +1,8 @@
 #include <napi.h>
-#include "services/classexample.h"
+#include "services/MouseWrapped.h"
 
 Napi::Object InitAll(Napi::Env env, Napi::Object exports) {
-  ClassExample::Init(env, exports);
+  MouseWrapped::Init(env, exports);
 
   return exports;
 }

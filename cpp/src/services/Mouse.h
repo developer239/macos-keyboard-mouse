@@ -1,6 +1,6 @@
-class ActualClass {
+class Mouse {
  public:
-  ActualClass(double value);
+  Mouse(double value);
   double getValue();
   double add(double toAdd);
  private:

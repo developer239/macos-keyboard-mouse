@@ -1,15 +1,15 @@
 #include <napi.h>
-#include "actualclass.h"
+#include "Mouse.h"
 
-class ClassExample : public Napi::ObjectWrap<ClassExample> {
+class MouseWrapped : public Napi::ObjectWrap<MouseWrapped> {
  public:
   static Napi::Object Init(Napi::Env env, Napi::Object exports);
-  ClassExample(const Napi::CallbackInfo& info);
-  ActualClass* GetInternalInstance();
+  MouseWrapped(const Napi::CallbackInfo& info);
+  Mouse* GetInternalInstance();
 
  private:
   static Napi::FunctionReference constructor;
   Napi::Value GetValue(const Napi::CallbackInfo& info);
   Napi::Value Add(const Napi::CallbackInfo& info);
-  ActualClass *actualClass_;
+  Mouse *actualClass_;
 };
