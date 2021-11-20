@@ -9,11 +9,16 @@ file(GLOB SOURCE_FILES "src/main.cpp")
 add_library(${PROJECT_NAME} SHARED ${SOURCE_FILES} ${CMAKE_JS_SRC}
         src/services/Mouse.cpp
         src/services/Mouse.h
-        src/services/MouseWrapped.cpp
-        src/services/MouseWrapped.h
-        )
+        src/_wrapped/MouseWrapped.cpp
+        src/_wrapped/MouseWrapped.h
+        src/common/delay.cpp src/common/delay.h)
 
 set_target_properties(${PROJECT_NAME} PROPERTIES PREFIX "" SUFFIX ".node")
+
+target_link_libraries(${PROJECT_NAME}
+        "-framework Carbon"
+        )
+
 target_link_libraries(${PROJECT_NAME} ${CMAKE_JS_LIB})
 
 # Include Node-API wrappers

@@ -1,5 +1,5 @@
 #include <napi.h>
-#include "services/MouseWrapped.h"
+#include "_wrapped/MouseWrapped.h"
 
 Napi::Object InitAll(Napi::Env env, Napi::Object exports) {
   MouseWrapped::Init(env, exports);

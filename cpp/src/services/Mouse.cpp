@@ -1,16 +1,23 @@
 #include "Mouse.h"
+#include "../common/delay.h"
 
-Mouse::Mouse(double value){
-    this->value_ = value;
+CGPoint Mouse::getLocation() {
+  CGEventRef event = CGEventCreate(nullptr);
+  CGPoint cursor = CGEventGetLocation(event);
+  CFRelease(event);
+
+  return CGPointMake(cursor.x, cursor.y);
 }
 
-double Mouse::getValue()
-{
-  return this->value_;
+void Mouse::move(int x, int y) {
+  CGPoint location = CGPointMake(x, y);
+  executeEvent(kCGMouseButtonLeft, kCGEventMouseMoved, location);
 }
 
-double Mouse::add(double toAdd)
-{
-  this->value_ += toAdd;
-  return this->value_;
+void Mouse::executeEvent(CGMouseButton button, CGEventType type, CGPoint location) {
+  CGEventRef event = CGEventCreateMouseEvent(NULL, type, location, button);
+  CGEventPost(kCGHIDEventTap, event);
+  CFRelease(event);
+
+  delay(25);
 }
