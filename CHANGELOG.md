@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/developer239/macos-keyboard-mouse/compare/v1.0.1...v1.0.2) (2021-11-20)
+
+
+### Bug Fixes
+
+* make the library actually work ([25b6dc8](https://github.com/developer239/macos-keyboard-mouse/commit/25b6dc8147a4cedd8ddcaa847826d163c051321a))
+
 ## [1.0.1](https://github.com/developer239/macos-keyboard-mouse/compare/v1.0.0...v1.0.1) (2021-11-20)
 
 
