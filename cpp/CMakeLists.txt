@@ -7,8 +7,8 @@ project(macos-keyboard-mouse)
 include_directories(${CMAKE_JS_INC})
 file(GLOB SOURCE_FILES "src/main.cpp")
 add_library(${PROJECT_NAME} SHARED ${SOURCE_FILES} ${CMAKE_JS_SRC}
-        src/services/Mouse.cpp
-        src/services/Mouse.h
+        src/devices/Mouse.cpp
+        src/devices/Mouse.h
         src/_wrapped/MouseWrapped.cpp
         src/_wrapped/MouseWrapped.h
         src/common/delay.cpp src/common/delay.h)

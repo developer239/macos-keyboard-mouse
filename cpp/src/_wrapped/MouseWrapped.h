@@ -2,7 +2,7 @@
 #define __MOUSEWRAPPED_H__
 
 #include <napi.h>
-#include "../services/Mouse.h"
+#include "../devices/Mouse.h"
 
 class MouseWrapped : public Napi::ObjectWrap<MouseWrapped> {
 public:
