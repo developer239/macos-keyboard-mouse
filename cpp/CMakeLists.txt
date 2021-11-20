@@ -13,6 +13,8 @@ add_library(${PROJECT_NAME} SHARED ${SOURCE_FILES} ${CMAKE_JS_SRC}
         src/devices/Keyboard.h
         src/_wrapped/MouseWrapped.cpp
         src/_wrapped/MouseWrapped.h
+        src/_wrapped/KeyboardWrapped.cpp
+        src/_wrapped/MouseWrapped.h
         src/common/delay.cpp
         src/common/delay.h
         )
