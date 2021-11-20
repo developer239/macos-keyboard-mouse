@@ -16,7 +16,10 @@ private:
   Mouse *_actualClass_;
 
   Napi::Value getLocation(const Napi::CallbackInfo &info);
+
   void move(const Napi::CallbackInfo &info);
+
+  void click(const Napi::CallbackInfo &info);
 };
 
 #endif

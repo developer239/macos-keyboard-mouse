@@ -7,6 +7,8 @@ class Mouse {
 public:
   void move(int x, int y);
 
+  void click(int button, bool shouldPress);
+
   CGPoint getLocation();
 
 private:

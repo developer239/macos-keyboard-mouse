@@ -5,4 +5,5 @@ var addon = require('bindings')({
 console.log('addon', addon)
 
 const mouse = new addon.Mouse()
-console.log('mouse.getLocation', mouse.move(100, 100))
+mouse.move(100, 100)
+mouse.click(0, true)
