@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/developer239/macos-keyboard-mouse/compare/v1.0.0...v1.0.1) (2021-11-20)
+
+
+### Bug Fixes
+
+* package json ([0715cc8](https://github.com/developer239/macos-keyboard-mouse/commit/0715cc851b09c7dec905383646926141a8a4790d))
+
 # 1.0.0 (2021-11-20)
 
 
