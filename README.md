@@ -1,3 +1,5 @@
+## Since both RobotJS libraries are no longer being maintained, and as I had been working with C++ in the past month, I decided to start a new, more robust implementation. [I have implemented keyboard, mouse, and display controls that are very similar to the original RobotJS API 🤖developer239/robot-ts](https://github.com/developer239/robot-ts) (and should be cross-platform in the future)
+
 # MacOS Keyboard Mouse
 
 [![npm version](http://img.shields.io/npm/v/macos-keyboard-mouse.svg?style=flat)](https://www.npmjs.com/package/macos-keyboard-mouse "View this project on npm")
